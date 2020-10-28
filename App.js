@@ -1,21 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-export default function App() {
+import LoginScreen from './screens/login';
+import GalleryScreen from './screens/Gallery';
+import ForumScreen from './screens/Forum';
+import EventsScreen from './screens/Events';
+import NotificationScreen from './screens/Notification';
+
+
+const MainTab = createMaterialBottomTabNavigator();
+const RootStack = createStackNavigator();
+
+function MainTabScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <MainTab.Navigator
+    initialRouteName="Forum"
+    activeColor="#f0edf6"
+    inactiveColor="#3e2465"
+    barStyle={{ backgroundColor: '#694fad' }}
+    >
+      <MainTab.Screen name="Forum" component={ForumScreen} />
+      <MainTab.Screen name="Gallery" component={GalleryScreen} />
+      <MainTab.Screen name="Events" component={EventsScreen} />
+      <MainTab.Screen name="Notifications" component={NotificationScreen} />
+    </MainTab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+    <RootStack.Navigator mode="modal" headerMode="none">
+      <RootStack.Screen name="Login" component={LoginScreen} />
+      <RootStack.Screen name="Main" component={MainTabScreen} />
+    </RootStack.Navigator>
+  </NavigationContainer>
+  );
+}
