@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 function GalleryScreen({ navigation }) {
     return (
-    <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+    <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20 }}>
         <Text style={{ fontSize: 30 }}>Gallery</Text>
         <Button
           onPress={() => navigation.navigate('Login')}

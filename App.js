@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginScreen from './screens/login';
-import MainTabScreen from './navigation/MainTabNavigation';
+import DrawerNavigator from './navigation/DrawerNavigation';
 
 const RootStack = createStackNavigator();
 
@@ -14,7 +14,7 @@ export default function App() {
     <NavigationContainer>
     <RootStack.Navigator mode="modal" headerMode="none">
       <RootStack.Screen name="Login" component={LoginScreen} />
-      <RootStack.Screen name="Main" component={MainTabScreen} />
+      <RootStack.Screen name="Main" component={DrawerNavigator} />
     </RootStack.Navigator>
   </NavigationContainer>
   );
