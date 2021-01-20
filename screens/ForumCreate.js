@@ -1,13 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, StyleSheet, Text, View, Button } from 'react-native';
 
 function ForumCreateScreen({ navigation }) {
     return (
     <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20}}
     >
-        <Text style={{ fontSize: 30 }}>Add new question to forum</Text>
+        <Text style={{ fontSize: 30 }}>Add forum post</Text>
 
-        
 
         <Button
           onPress={() => navigation.navigate('Forum')}
