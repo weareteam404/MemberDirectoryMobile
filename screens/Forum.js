@@ -7,7 +7,7 @@ function ForumScreen({ navigation }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://member-directory.herokuapp.com/forum')
+    fetch('https://member-directory.herokuapp.com/forum/home')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
