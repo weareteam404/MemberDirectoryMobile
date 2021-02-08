@@ -41,7 +41,7 @@ function ForumScreen({ navigation }) {
             <Text style={{
               fontSize: 14
             }}>
-              
+
             {moment.utc(item.updatedAt).local().startOf('seconds').fromNow()}
             </Text>
             </Text>
@@ -49,11 +49,7 @@ function ForumScreen({ navigation }) {
           )}
         />
       )}
-        
-        <Button
-          onPress={() => navigation.navigate('Login')}
-          title="Log out"
-        />
+
         <Button
           onPress={() => navigation.navigate('ForumCreate')}
           title="Add Post"
