@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, View, Button } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { moment } from 'moment';
 
 function ForumScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+
+  const moment = require('moment'); 
 
   useEffect(() => {
     fetch('https://member-directory.herokuapp.com/forum/home')
@@ -20,29 +23,33 @@ function ForumScreen({ navigation }) {
         
         {isLoading ? <ActivityIndicator/> : (
         <FlatList
-          data={data}
+          data={data.reverse()}
           keyExtractor={({ _id }, index) => _id}
           renderItem={({ item }) => (
             
             <Text style={{
-              backgroundColor: '#f9c2ff',
               marginVertical:10,
-              fontSize: 20
-            }}>
-              <MaterialCommunityIcons name="human-greeting" size={24} color="black" />
-              {item.message} {"\n"}
+              fontSize: 20,
+              backgroundColor:'white',
+              borderWidth: 1, 
+              borderColor:'black',
+              borderRadius:10,
+              margin:5
+            }}>{" "}
+              <MaterialCommunityIcons name="human-greeting" size={20} color="black" />{" #### \n "}
+              {item.message} {"\n "}
             <Text style={{
-              backgroundColor: '#f9c2ff',
               fontSize: 14
-            }}
-            >
-            {item.updatedAt}</Text>
+            }}>
+              
+            {moment.utc(item.updatedAt).local().startOf('seconds').fromNow()}
+            </Text>
             </Text>
 
           )}
         />
       )}
-
+        
         <Button
           onPress={() => navigation.navigate('Login')}
           title="Log out"
