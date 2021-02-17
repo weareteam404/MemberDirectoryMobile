@@ -4,6 +4,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import MainTabScreen from "./MainTabNavigation";
 
 import BlogScreen from '../screens/Blog';
+import BlogUploadsScreen from '../screens/BlogUploads';
 import LoginScreen from '../screens/login';
 import { color } from "react-native-reanimated";
 
@@ -15,6 +16,7 @@ const DrawerNavigator = () => {
     <Drawer.Navigator>
       <Drawer.Screen name="Main" component={MainTabScreen} />
       <Drawer.Screen name="Blog" component={BlogScreen} />
+      <Drawer.Screen name="Blog Uploads" component={BlogUploadsScreen} />
       <Drawer.Screen name="Logout" component={LoginScreen} />
     </Drawer.Navigator>
   );
