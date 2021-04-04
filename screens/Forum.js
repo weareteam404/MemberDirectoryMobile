@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View, Button } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View, Button, TouchableWithoutFeedback } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { moment } from 'moment';
 
@@ -27,6 +27,8 @@ function ForumScreen({ navigation }) {
           keyExtractor={({ _id }, index) => _id}
           renderItem={({ item }) => (
             
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('ForumReply',(item._id
+            ))}>
             <Text style={{
               marginVertical:10,
               fontSize: 20,
@@ -36,16 +38,17 @@ function ForumScreen({ navigation }) {
               borderRadius:10,
               margin:5
             }}>{" "}
-              <MaterialCommunityIcons name="human-greeting" size={20} color="black" />{" #### \n "}
+              <MaterialCommunityIcons name="human-greeting" size={20} color="black" /> {item.firstname} {item.lastname} {"\n "}
               {item.message} {"\n "}
             <Text style={{
               fontSize: 14
             }}>
 
-            {moment.utc(item.updatedAt).local().startOf('seconds').fromNow()}
+            {moment.utc(item.createdAt).local().startOf('seconds').fromNow()}
             </Text>
             </Text>
 
+            </TouchableWithoutFeedback>
           )}
         />
       )}

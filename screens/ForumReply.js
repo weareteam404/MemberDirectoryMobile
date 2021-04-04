@@ -1,61 +1,63 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View, Button } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { moment } from 'moment';
+import { ActivityIndicator, StyleSheet, Text, View, Button, TextInput, Alert, list } from 'react-native';
 
-function ForumScreen({ navigation }) {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+function ForumReplyScreen({ navigation },route) {
+  const [value, onChangeText] = React.useState('');
 
-  const moment = require('moment'); 
-
-  useEffect(() => {
-    fetch('https://member-directory.herokuapp.com/forum/home')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
-
-    return (
-    <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20 }}>
-        <Text style={{ fontSize: 30 }}>Forum</Text>
-        
-        {isLoading ? <ActivityIndicator/> : (
-        <FlatList
-          data={data.reverse()}
-          keyExtractor={({ _id }, index) => _id}
-          renderItem={({ item }) => (
+  const send = () =>{
+    fetch('https://member-directory.herokuapp.com/forum/', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              message: value
+            })
+          })
+          alert(
+            "Post added",
+            "posted on forum",
+            [{ text: "OK", onPress: () => value=''}]
             
-            <Text style={{
+          )
+  }
+    return (
+    <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20}}>
+        <Text style={{ fontSize: 30 }}>Forum post{route._id}</Text>
+
+        <Text style={{
               marginVertical:10,
               fontSize: 20,
               backgroundColor:'white',
               borderWidth: 1, 
               borderColor:'black',
               borderRadius:10,
-              margin:5
-            }}>{" "}
-              <MaterialCommunityIcons name="human-greeting" size={20} color="black" />{" #### \n "}
-              {item.message} {"\n "}
-            <Text style={{
-              fontSize: 14
-            }}>
-
-            {moment.utc(item.updatedAt).local().startOf('seconds').fromNow()}
-            </Text>
-            </Text>
-
-          )}
-        />
-      )}
+              margin:5,
+              width:'90%'
+            }}>{" Enter reply here: \n "}
+            
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', margin:5, borderWidth: 1 }}
+          onChangeText={text => onChangeText(text)}
+          value={value}
+        />{"\n\n"}
 
         <Button
-          onPress={() => navigation.navigate('ForumCreate')}
-          title="Add Post"
+          style={{margin:10, marginVertical:10}}
+          width='5'
+          title="Add"
+          onPress={send}
+        />
+        </Text>
+
+        <Button
+          onPress={() => navigation.navigate('Forum')}
+          width='5'
+          title="Back"
         />
       </View>
     );
   }
   
-  export default ForumScreen;
+  export default ForumReplyScreen;

@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginScreen from './screens/login';
 import ForumCreateScreen from './screens/ForumCreate';
+import ForumReplyScreen from './screens/ForumReply';
 import DrawerNavigator from './navigation/DrawerNavigation';
 
 const RootStack = createStackNavigator();
@@ -17,6 +18,8 @@ export default function App() {
       <RootStack.Screen name="Login" component={LoginScreen} />
       <RootStack.Screen name="Main" component={DrawerNavigator} />
       <RootStack.Screen name ="ForumCreate" component={ForumCreateScreen} />
+      <RootStack.Screen name ="ForumReply" component={ForumReplyScreen} />
+
     </RootStack.Navigator>
   </NavigationContainer>
   );
