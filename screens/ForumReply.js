@@ -10,9 +10,9 @@ function ForumReplyScreen({ navigation, route }) {
     const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ body: 'React PUT Request Example' })
+        body: JSON.stringify({ body: value })
     };
-    fetch('https://jsonplaceholder.typicode.com/posts/1', requestOptions)
+    fetch('https://member-directory.herokuapp.com/forum/reply/'+{id}, requestOptions)
         .then(response => response.json())
         .then(data => this.setState({ postId: data.id }));
 }
