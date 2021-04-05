@@ -66,7 +66,7 @@ function MainTabScreen() {
         component = { NotificationScreen }
         options = {
             {
-                tabBarLabel: 'Notifications',
+                tabBarLabel: 'Jobs',
                 tabBarIcon: ({ color }) => ( <
                     MaterialCommunityIcons name = "bell"
                     color = { color }

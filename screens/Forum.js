@@ -18,7 +18,7 @@ function ForumScreen({ navigation }) {
   }, []);
 
     return (
-    <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20 }}>
+    <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20}}>
         <Text style={{ fontSize: 30 }}>Forum</Text>
         
         {isLoading ? <ActivityIndicator/> : (
@@ -27,8 +27,7 @@ function ForumScreen({ navigation }) {
           keyExtractor={({ _id }, index) => _id}
           renderItem={({ item }) => (
             
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('ForumReply',(item._id
-            ))}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('ForumReply',{id:(item._id)})}>
             <Text style={{
               marginVertical:10,
               fontSize: 20,
@@ -36,7 +35,8 @@ function ForumScreen({ navigation }) {
               borderWidth: 1, 
               borderColor:'black',
               borderRadius:10,
-              margin:5
+              margin:5,
+              width:'90%'
             }}>{" "}
               <MaterialCommunityIcons name="human-greeting" size={20} color="black" /> {item.firstname} {item.lastname} {"\n "}
               {item.message} {"\n "}

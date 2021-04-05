@@ -1,30 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, setState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View, Button, TextInput, Alert, list } from 'react-native';
 
-function ForumReplyScreen({ navigation },route) {
+function ForumReplyScreen({ navigation, route }) {
   const [value, onChangeText] = React.useState('');
+  const { id } = route.params;
 
+ const send = () =>{
+    // Simple PUT request with a JSON body using fetch
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ body: 'React PUT Request Example' })
+    };
+    fetch('https://jsonplaceholder.typicode.com/posts/1', requestOptions)
+        .then(response => response.json())
+        .then(data => this.setState({ postId: data.id }));
+}
+/*
   const send = () =>{
-    fetch('https://member-directory.herokuapp.com/forum/', {
-            method: 'POST',
+    fetch('https://member-directory.herokuapp.com/forum/reply/'+{id}, {
+            method: 'PUT',
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              message: value
+              body: value
             })
-          })
+          }).then(response => response.json())
+          .then(data => this.setState({ id: {id} }));
           alert(
-            "Post added",
-            "posted on forum",
+            "Reply added",
+            "reply posted on forum",
             [{ text: "OK", onPress: () => value=''}]
             
           )
-  }
+  }*/
     return (
     <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20}}>
-        <Text style={{ fontSize: 30 }}>Forum post{route._id}</Text>
+        <Text style={{ fontSize: 30 }}>Forum Reply </Text>
 
         <Text style={{
               marginVertical:10,

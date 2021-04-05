@@ -7,7 +7,7 @@ function EventsScreen({ navigation }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://member-directory.herokuapp.com/event/')
+    fetch('https://member-directory.herokuapp.com/events/')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
