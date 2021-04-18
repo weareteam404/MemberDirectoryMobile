@@ -2,8 +2,18 @@ import React, { useEffect, setState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View, Button, TextInput, Alert, list } from 'react-native';
 
 function ForumReplyScreen({ navigation, route }) {
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
   const [value, onChangeText] = React.useState('');
   const { id } = route.params;
+
+  useEffect(() => {
+    fetch('https://member-directory.herokuapp.com/forum/'+{id})
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
 
  const send = () =>{
     // Simple PUT request with a JSON body using fetch

@@ -9,7 +9,7 @@ function NotificationScreen({ navigation }) {
   const moment = require('moment'); 
 
   useEffect(() => {
-    fetch('https://memdir.herokuapp.com/jobs')
+    fetch('https://memdir.herokuapp.com/jobs/')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))

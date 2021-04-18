@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import * as firebase from 'firebase';
+import {firebaseConfig} from './config/FirebaseConfig';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,6 +14,12 @@ import DrawerNavigator from './navigation/DrawerNavigation';
 const RootStack = createStackNavigator();
 
 export default function App() {
+
+  if(!firebase.default.apps){
+    firebase.initializeApp(firebaseConfig);
+  }
+  
+
   return (
     <NavigationContainer>
     <RootStack.Navigator mode="modal" headerMode="none">

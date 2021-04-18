@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View, Button,Image } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View, Button, Image} from 'react-native';
+
 
 function EventsScreen({ navigation }) {
-
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -15,7 +15,7 @@ function EventsScreen({ navigation }) {
   }, []);
 
     return (
-      <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20}}>
+      <View style={{ flex: 1, justifyContent: 'flex-start' , marginTop:20 }}>
         <Text style={{ fontSize: 30 }}>Events</Text>
 
         {isLoading ? <ActivityIndicator/> : (
@@ -25,17 +25,20 @@ function EventsScreen({ navigation }) {
           renderItem={({ item }) => (
 
             <Text style={{
-              marginVertical:5,
+              marginVertical:10,
               fontSize: 20,
               backgroundColor:'white',
               borderWidth: 1, 
               borderColor:'black',
               borderRadius:10,
-              margin:5,
-            }}>{" "}{item.title}{"\n "} 
+              margin:5
+            }}
+
+            >{" "}
+            {item.title}
+            {" \n "} 
             <Image
               style={{
-                flex:1,
                 resizeMode: 'contain',
                 marginBottom:20
               }}
@@ -45,10 +48,8 @@ function EventsScreen({ navigation }) {
             />
             {"\n "}
             <Text style={{
-              fontSize: 14,
-              padding: 2,
-            }}
-            >
+              fontSize: 14
+            }}>
               {item.description}{"\n Number of participants: "}{item.attendance}{" "}{PaidOrFree(item.paid)}
             </Text>
             </Text>
@@ -57,6 +58,7 @@ function EventsScreen({ navigation }) {
       )}
 
         <Button
+          style={{ flex: 2 }}
           onPress={() => navigation.navigate('Login')}
           title="Log out"
         />
