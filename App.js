@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app'
 import {firebaseConfig} from './config/FirebaseConfig';
 
 import { NavigationContainer } from '@react-navigation/native';

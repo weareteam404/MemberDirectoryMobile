@@ -5,15 +5,17 @@ import {
   Text,
   Button,
   TextInput,
-  StyleSheet,
+  StyleSheet
 } from 'react-native';
-import * as Firebase from 'firebase';
-  
+
+import Firebase from 'firebase/app'
+import "firebase/auth";
+
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('kalumsilva@gmail.com');
   const [password, setPassword] = useState('kalumsilva123');
 
-  const userLogin = ({ navigation }) => {
+  const userLogin = () => {
     try 
     { 
     Firebase.auth()

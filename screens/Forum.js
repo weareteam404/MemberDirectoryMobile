@@ -10,7 +10,7 @@ function ForumScreen({ navigation }) {
   const moment = require('moment'); 
 
   useEffect(() => {
-    fetch('https://member-directory.herokuapp.com/forum/home')
+    fetch('https://member-directory.herokuapp.com/forum/home?type=ACADEMIC&faculty=aaaa&userid=wV6RMbt7sPa2i90X71jtOGhNTJi1')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
@@ -18,7 +18,7 @@ function ForumScreen({ navigation }) {
   }, []);
 
     return (
-    <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20}}>
+    <View style={{ flex: 1, justifyContent: 'flex-start' , marginTop:20}}>
         <Text style={{ fontSize: 30 }}>Forum</Text>
         
         {isLoading ? <ActivityIndicator/> : (
