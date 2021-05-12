@@ -1,4 +1,4 @@
-import React, { useEffect, setState } from 'react';
+import React, { useEffect, setState, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View, Button, TextInput, Alert, list } from 'react-native';
 
 function ForumReplyScreen({ navigation, route }) {

@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, View, Button, TouchableWithoutFeedback } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { moment } from 'moment';
+import firebase from 'firebase/app'
+import "firebase/auth";
 
 function ForumScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
+  const user = firebase.auth().currentUser;
 
   const moment = require('moment'); 
 
@@ -15,7 +18,11 @@ function ForumScreen({ navigation }) {
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, []);
+  }, [data]);
+
+  if (user) {
+    console.log('User ID: ', user.uid);
+   }
 
     return (
     <View style={{ flex: 1, justifyContent: 'flex-start' , marginTop:20}}>
@@ -27,7 +34,9 @@ function ForumScreen({ navigation }) {
           keyExtractor={({ _id }, index) => _id}
           renderItem={({ item }) => (
             
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('ForumReply',{id:(item._id)})}>
+            <TouchableWithoutFeedback onPress={() => 
+              navigation.navigate('ForumReply',{id:(item._id)})
+            }>
             <Text style={{
               marginVertical:10,
               fontSize: 20,

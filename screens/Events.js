@@ -4,7 +4,7 @@ import { ActivityIndicator, FlatList, Text, View, Button, Image} from 'react-nat
 
 function EventsScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   useEffect(() => {
     fetch('https://member-directory.herokuapp.com/events/')
@@ -12,7 +12,7 @@ function EventsScreen({ navigation }) {
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, []);
+  }, [data]);
 
     return (
       <View style={{ flex: 1, justifyContent: 'flex-start' , marginTop:20 }}>
