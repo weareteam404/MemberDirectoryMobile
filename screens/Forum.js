@@ -35,7 +35,7 @@ function ForumScreen({ navigation }) {
           renderItem={({ item }) => (
             
             <TouchableWithoutFeedback onPress={() => 
-              navigation.navigate('ForumReply',{id:(item._id)})
+              navigation.navigate('BlogView',{id:(item._id)})
             }>
             <Text style={{
               marginVertical:10,

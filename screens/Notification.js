@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View, Button} from 'react-native';
+import { ActivityIndicator, FlatList, Text, View, Button, TouchableWithoutFeedback} from 'react-native';
 
 
 function NotificationScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   const moment = require('moment'); 
 
@@ -14,11 +14,11 @@ function NotificationScreen({ navigation }) {
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, []);
+  }, [data]);
 
     return (
     <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' , marginTop:20 }}>
-        <Text style={{ fontSize: 30 }}>Job Alerts</Text>
+        <Text style={{ fontSize: 30 }}>Job Updates</Text>
 
         {isLoading ? <ActivityIndicator/> : (
         <FlatList
@@ -26,6 +26,10 @@ function NotificationScreen({ navigation }) {
           keyExtractor={({ _id }, index) => _id}
           renderItem={({ item }) => (
             
+            <TouchableWithoutFeedback onPress={() => 
+              navigation.navigate('JobView',{id:(item._id)})
+            }>
+
             <Text style={{
               marginVertical:10,
               fontSize: 20,
@@ -47,6 +51,7 @@ function NotificationScreen({ navigation }) {
             </Text>
             </Text>
 
+            </TouchableWithoutFeedback>
           )}
         />
       )}

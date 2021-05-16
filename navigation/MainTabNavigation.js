@@ -40,7 +40,7 @@ function MainTabScreen() {
             {
                 tabBarLabel: 'Gallery',
                 tabBarIcon: ({ color }) => ( <
-                    MaterialCommunityIcons name = "image-multiple"
+                    MaterialCommunityIcons name = "account-box-multiple"
                     color = { color }
                     size = { 26 }
                     />
