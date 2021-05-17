@@ -8,6 +8,8 @@ function JobView({ navigation, route }) {
   const [data, setData] = useState();
   const { id } = route.params;
 
+  const moment = require('moment'); 
+
   useEffect(() => {
     fetch('https://memdir.herokuapp.com/jobs/'+id)
       .then((response) => response.json())
@@ -46,7 +48,7 @@ function JobView({ navigation, route }) {
           )}
           />
             {"\n"}{"Closing Date: "}{data.closingDate}{"\n"}
-            {moment.utc(item.date).local().startOf('seconds').fromNow()}
+            {moment.utc(data.date).local().startOf('seconds').fromNow()}
             </Text></Text>
             </View>
       )}

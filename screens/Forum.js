@@ -7,7 +7,7 @@ import "firebase/auth";
 
 function ForumScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState();
+  const [detail, setData] = useState();
   const user = firebase.auth().currentUser;
 
   const moment = require('moment'); 
@@ -18,7 +18,7 @@ function ForumScreen({ navigation }) {
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, [data]);
+  }, [detail]);
 
   if (user) {
     console.log('User ID: ', user.uid);
@@ -30,12 +30,12 @@ function ForumScreen({ navigation }) {
         
         {isLoading ? <ActivityIndicator/> : (
         <FlatList
-          data={data.reverse()}
+          data={detail.reverse()}
           keyExtractor={({ _id }, index) => _id}
           renderItem={({ item }) => (
             
             <TouchableWithoutFeedback onPress={() => 
-              navigation.navigate('BlogView',{id:(item._id)})
+              navigation.navigate('ForumReplyScreen',{id:(item._id)})
             }>
             <Text style={{
               marginVertical:10,

@@ -38,7 +38,7 @@ function MainTabScreen() {
         component = { GalleryScreen }
         options = {
             {
-                tabBarLabel: 'Gallery',
+                tabBarLabel: 'Directory',
                 tabBarIcon: ({ color }) => ( <
                     MaterialCommunityIcons name = "account-box-multiple"
                     color = { color }
@@ -62,7 +62,7 @@ function MainTabScreen() {
             }
         }
         /> 
-        <MainTab.Screen name = "Notifications"
+        <MainTab.Screen name = "Jobs"
         component = { NotificationScreen }
         options = {
             {

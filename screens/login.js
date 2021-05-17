@@ -12,8 +12,8 @@ import Firebase from 'firebase/app'
 import "firebase/auth";
 
 function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState('kalumsilva@gmail.com');
-  const [password, setPassword] = useState('kalumsilva123');
+  const [email, setEmail] = useState('sugath@gmail.com');
+  const [password, setPassword] = useState('sugath123');
 
   const userLogin = () => {
     try 

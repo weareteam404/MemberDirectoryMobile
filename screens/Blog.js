@@ -59,8 +59,8 @@ function BlogScreen({ navigation }) {
       )}
 
         <Button
-          onPress={() => navigation.navigate('Login')}
-          title="Log out"
+          onPress={() => navigation.navigate('Main')}
+          title="Back"
         />
       </View>
     );
